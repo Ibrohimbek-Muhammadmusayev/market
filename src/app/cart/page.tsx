@@ -5,7 +5,6 @@ export default function Cart (){
                 asdasdasd
                 asdasdasdasd
                 asdasdasdasdasd
-                
             </div>
         </div>
     )

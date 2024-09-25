@@ -8,28 +8,34 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase/";
 import { useRouter } from "next/navigation";
 
-type type = {
+type UserCredentials = {
     email: string,
     password: string,
 }
 
 export default function Login(){
     const router = useRouter();
-    const [selectedItems, setSelectedItems] = useState<type>({
+    const [selectedItems, setSelectedItems] = useState<UserCredentials>({
         email: "",
         password: "",
     });
 
-     const OnSubmit = () => {
-         signInWithEmailAndPassword(auth, selectedItems.email, selectedItems.password)
+    const OnSubmit = () => {
+        // Basic validation
+        if (!selectedItems.email || !selectedItems.password) {
+            console.error("Email and password are required.");
+            return;
+        }
+
+        signInWithEmailAndPassword(auth, selectedItems.email, selectedItems.password)
         .then((userCredential) => {
             const user = userCredential.user;
             console.log("User logged in: ", user);
             if (typeof window !== "undefined") {
                 window.localStorage.setItem("token", JSON.stringify(user));
-                if (user.photoURL == 'siller') {
+                if (user.photoURL === 'siller') {
                     router.push("/sillerprofile");
-                } if (user.photoURL == 'user') {
+                } else if (user.photoURL === 'user') {
                     router.push("/userprofile");
                 }
             }
@@ -49,8 +55,8 @@ export default function Login(){
                         <h1 className="text-white text-[25px] font-bold drop-shadow-xl">Login</h1>
                     </div>
                     <div className="flex flex-col mt-[170px] mx-[40px] gap-[10px]">
-                        <Input value={selectedItems.email} onChange={(e)=>setSelectedItems({...selectedItems, email:e.target.value})} type="email" placeholder={"Email"}/>
-                        <Input value={selectedItems.password} onChange={(e)=>setSelectedItems({...selectedItems, password:e.target.value})} type="password" placeholder={"Password"}/>
+                        <Input value={selectedItems.email} onChange={(e) => setSelectedItems({...selectedItems, email: e.target.value})} type="email" placeholder={"Email"} />
+                        <Input value={selectedItems.password} onChange={(e) => setSelectedItems({...selectedItems, password: e.target.value})} type="password" placeholder={"Password"} />
                     </div>
                     <div className="flex justify-end mt-[20px] mx-[40px]">
                         <Link href="/signup" className="text-white text-[15px] font-bold">Register</Link>
@@ -61,5 +67,5 @@ export default function Login(){
                 </div>
             </div>
         </div>
-    )
+    );
 }

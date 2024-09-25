@@ -3,7 +3,7 @@
 import { Button, Drawer } from "antd"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import type { DrawerProps, RadioChangeEvent } from 'antd';
+import type { DrawerProps } from 'antd';
 import Menus from "@/components/antdesign/menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -16,7 +16,7 @@ export default function Sillerprofile(){
         setToken(token)
     }, [])
 
-    const [placement, setPlacement] = useState<DrawerProps['placement']>('left')
+    const [placement] = useState<DrawerProps['placement']>('left')
     const showDrawer = () => {
         setOpen(true);
     };

@@ -2,7 +2,6 @@
 // import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Button } from "./ui/button";
 import {
     Popover,
@@ -11,26 +10,24 @@ import {
 } from "@/components/ui/popover"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import React, { useEffect, useState } from 'react';
-import { Drawer, Modal, Select, Space, Switch } from 'antd';
-import type { DrawerProps, RadioChangeEvent } from 'antd';
+import { Drawer, Modal } from 'antd';
+import type { DrawerProps } from 'antd';
 import Inputselect from "./input";
 import { useRouter } from "next/navigation";
 
-const OPTIONS = ['Apples', 'Nails', 'Bananas', 'Helicopters'];
-
 export default function Navbar(){
     const router = useRouter();
-    const [selectedItems, setSelectedItems] = useState<string[]>([]);
+    // const [selectedItems] = useState<string[]>([]);
     const [token, setToken] = useState<any>(null);
     useEffect(() => {
-        const token = JSON.parse(localStorage.getItem('token') as string)
+        const token = JSON.parse(window.localStorage.getItem('token') as string)
         if (token) {
             setToken(token)
         }
     }, [])
 
     const [open, setOpen] = useState(false);
-    const [placement, setPlacement] = useState<DrawerProps['placement']>('left');
+    const [placement] = useState<DrawerProps['placement']>('left');
 
     const showDrawer = () => {
         setOpen(true);
@@ -38,10 +35,6 @@ export default function Navbar(){
 
     const onClose = () => {
         setOpen(false);
-    };
-
-    const onChange = (e: RadioChangeEvent) => {
-        setPlacement(e.target.value);
     };
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,11 +55,8 @@ export default function Navbar(){
         onClose()
         showModal()
     }
-    const onCategorys = ()=>{
-        showModal()
-    }
 
-    const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
+    // const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
 
     return (
         <div className="w-full">
