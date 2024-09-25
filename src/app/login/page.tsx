@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase/";
 import { useRouter } from "next/navigation";
@@ -34,14 +34,16 @@ export default function Login() {
             console.log("User logged in: ", user);
 
             if (typeof window !== "undefined") {
-                window.localStorage.setItem("token", JSON.stringify(user));
-                if (user.photoURL === 'siller') {
-                    router.push("/sillerprofile");
-                } else if (user.photoURL === 'user') {
-                    router.push("/userprofile");
-                }
+                useEffect(()=>{
+                    window.localStorage.setItem("token", JSON.stringify(user));
+                }, [])
             }
-        } catch (error) {
+            if (user.photoURL === 'siller') {
+                router.push("/sillerprofile");
+            } else if (user.photoURL === 'user') {
+                router.push("/userprofile");
+            }
+        } catch (error:any) {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.error("Error logging in: ", errorCode, errorMessage);
