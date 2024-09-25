@@ -33,31 +33,29 @@ export default function Signup() {
         type: "",
     });
 
-    const OnSubmit = () => {
-        createUserWithEmailAndPassword(auth, selectedItems.email, selectedItems.password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                updateProfile(user, {
-                    displayName: selectedItems.username,
-                    photoURL: `${selectedItems.type}`,
-                })
-                    .then(() => {
-                        if (typeof window !== "undefined") {
-                            window.localStorage.setItem("token", JSON.stringify(user));
-                            if (user.photoURL === "siller") {
-                                router.push("/sillerprofile");
-                            } else if (user.photoURL === "user") {
-                                router.push("/userprofile");
-                            }
-                        }
-                    })
-                    .catch((error) => {
-                        console.log("Error updating profile: ", error);
-                    });
-            })
-            .catch((error) => {
-                console.log("Error creating user: ", error.message);
+    const [error, setError] = useState<string | null>(null);
+
+    const OnSubmit = async () => {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, selectedItems.email, selectedItems.password);
+            const user = userCredential.user;
+            await updateProfile(user, {
+                displayName: selectedItems.username,
+                photoURL: `${selectedItems.type}`,
             });
+
+            if (typeof window !== "undefined") {
+                window.localStorage.setItem("token", JSON.stringify(user));
+                if (user.photoURL === "siller") {
+                    router.push("/sillerprofile");
+                } else if (user.photoURL === "user") {
+                    router.push("/userprofile");
+                }
+            }
+        } catch (error: any) {
+            setError(error.message);
+            console.log("Error: ", error.message);
+        }
     };
 
     return (
@@ -67,8 +65,10 @@ export default function Signup() {
                     <div className="flex mt-[70px] justify-center">
                         <h1 className="text-white text-[25px] font-bold drop-shadow-xl">Signup</h1>
                     </div>
+                    {error && (
+                        <div className="text-red-500 text-center mb-4">{error}</div>
+                    )}
                     <div className="flex flex-col mt-[170px] mx-[40px] gap-[10px]">
-                        <div className="mx-auto"></div>
                         <Select onValueChange={(e: any) => setSelectedItems({ ...selectedItems, type: e })}>
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Who do you want to work as?" />

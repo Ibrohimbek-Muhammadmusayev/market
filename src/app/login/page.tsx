@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,24 +13,26 @@ type UserCredentials = {
     password: string,
 }
 
-export default function Login(){
+export default function Login() {
     const router = useRouter();
     const [selectedItems, setSelectedItems] = useState<UserCredentials>({
         email: "",
         password: "",
     });
+    const [error, setError] = useState<string | null>(null);
 
-    const OnSubmit = () => {
+    const OnSubmit = async () => {
         // Basic validation
         if (!selectedItems.email || !selectedItems.password) {
-            console.error("Email and password are required.");
+            setError("Email and password are required.");
             return;
         }
 
-        signInWithEmailAndPassword(auth, selectedItems.email, selectedItems.password)
-        .then((userCredential) => {
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, selectedItems.email, selectedItems.password);
             const user = userCredential.user;
             console.log("User logged in: ", user);
+
             if (typeof window !== "undefined") {
                 window.localStorage.setItem("token", JSON.stringify(user));
                 if (user.photoURL === 'siller') {
@@ -39,12 +41,12 @@ export default function Login(){
                     router.push("/userprofile");
                 }
             }
-        })
-        .catch((error) => {
+        } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.error("Error logging in: ", errorCode, errorMessage);
-        });
+            setError("Failed to log in. Please check your credentials.");
+        }
     };
 
     return (
@@ -54,9 +56,22 @@ export default function Login(){
                     <div className="flex mt-[70px] justify-center">
                         <h1 className="text-white text-[25px] font-bold drop-shadow-xl">Login</h1>
                     </div>
+                    {error && (
+                        <div className="text-red-500 text-center mb-4">{error}</div>
+                    )}
                     <div className="flex flex-col mt-[170px] mx-[40px] gap-[10px]">
-                        <Input value={selectedItems.email} onChange={(e) => setSelectedItems({...selectedItems, email: e.target.value})} type="email" placeholder={"Email"} />
-                        <Input value={selectedItems.password} onChange={(e) => setSelectedItems({...selectedItems, password: e.target.value})} type="password" placeholder={"Password"} />
+                        <Input 
+                            value={selectedItems.email} 
+                            onChange={(e) => setSelectedItems({...selectedItems, email: e.target.value})} 
+                            type="email" 
+                            placeholder={"Email"} 
+                        />
+                        <Input 
+                            value={selectedItems.password} 
+                            onChange={(e) => setSelectedItems({...selectedItems, password: e.target.value})} 
+                            type="password" 
+                            placeholder={"Password"} 
+                        />
                     </div>
                     <div className="flex justify-end mt-[20px] mx-[40px]">
                         <Link href="/signup" className="text-white text-[15px] font-bold">Register</Link>
