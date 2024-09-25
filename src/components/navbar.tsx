@@ -20,13 +20,13 @@ export default function Navbar(){
     // const [selectedItems] = useState<string[]>([]);
     const [token, setToken] = useState<any>(null);
     useEffect(() => {
-        if (typeof window !== undefined) {
-            const token = JSON.parse(window.localStorage.getItem('token') as string)
+        if (typeof window !== 'undefined') {
+            const token = JSON.parse(window.localStorage.getItem('token') as string);
             if (token) {
-                setToken(token)
+                setToken(token);
             }
         }
-    }, [])
+    }, []);
 
     const [open, setOpen] = useState(false);
     const [placement] = useState<DrawerProps['placement']>('left');
