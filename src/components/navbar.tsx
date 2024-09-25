@@ -20,9 +20,11 @@ export default function Navbar(){
     // const [selectedItems] = useState<string[]>([]);
     const [token, setToken] = useState<any>(null);
     useEffect(() => {
-        const token = JSON.parse(window.localStorage.getItem('token') as string)
-        if (token) {
-            setToken(token)
+        if (typeof window !== undefined) {
+            const token = JSON.parse(window.localStorage.getItem('token') as string)
+            if (token) {
+                setToken(token)
+            }
         }
     }, [])
 
@@ -142,6 +144,8 @@ export default function Navbar(){
                                 </Link>
                             </ul>
                             <ul className="flex mt-[20px] flex-col pb-[20px] border-b gap-[10px]">
+                                <h1 className="mx-auto text-[16px] font-semibold">Registeration</h1>
+                                {/* <h1 className="font-semibold text-green-300">Registeration</h1> */}
                                 <Link href={'/login'}>
                                     <div className="w-full h-[30px] bg-slate-400 rounded-[6px] p-1">
                                         <li className="font-semibold text-green-300">Login</li>
