@@ -177,8 +177,8 @@ export default function Products (){
                         </div>
                     </div>
                     <div className="">
-                        <div className="w-full h-[100%] shadow-inner my-[60px] overflow-hidden flex justify-center gap-[40px] flex-wrap rounded-md">
-                            {skletondata.map((item) => (
+                        <div className="w-full h-[100%] shadow-inner py-[30px] my-[60px] overflow-hidden flex justify-center gap-[40px] flex-wrap rounded-md">
+                            {skletondata.map(() => (
                                 <div className="rounded-[12px] overflow-hidden border h-[400px] w-[250px]">
                                     <div className="w-[250px] h-[200px] bg-slate-400"></div>
                                     <div className="px-[15px] pt-[10px]">

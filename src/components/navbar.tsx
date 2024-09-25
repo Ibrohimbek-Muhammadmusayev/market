@@ -144,8 +144,7 @@ export default function Navbar(){
                                 </Link>
                             </ul>
                             <ul className="flex mt-[20px] flex-col pb-[20px] border-b gap-[10px]">
-                                <h1 className="mx-auto text-[16px] font-semibold">Registeration</h1>
-                                {/* <h1 className="font-semibold text-green-300">Registeration</h1> */}
+                                <h1 className="mx-auto text-[16px] font-semibold">To register</h1>
                                 <Link href={'/login'}>
                                     <div className="w-full h-[30px] bg-slate-400 rounded-[6px] p-1">
                                         <li className="font-semibold text-green-300">Login</li>
@@ -235,15 +234,17 @@ export default function Navbar(){
                             </Link>
                         </div>
                     </div>
-                    <button className="bg-white w-[60px] sm:hidden flex justify-center overflow-hidden rounded text-black" onClick={showDrawer}>
-                        <Image
-                            className="w-[30px] mx-[8px] h-[30px]"
-                            src={'/hamburger.png'}
-                            alt="pagination logo"
-                            width={30}
-                            height={30}
-                        />
-                    </button>
+                    <div className="flex justify-center items-center">
+                        <button className="w-[40px] h-[40px] bg-white sm:hidden flex justify-center overflow-hidden rounded text-black" onClick={showDrawer}>
+                            <Image
+                                className="w-[30px] mx-[10px] my-[4px] h-[30px]"
+                                src={'https://img.icons8.com/?size=100&id=8113&format=png&color=000000'}
+                                alt="pagination logo"
+                                width={30}
+                                height={30}
+                                />
+                        </button>
+                    </div>
                     {/* <Select
                         mode="multiple"
                         placeholder="Inserted are removed"
@@ -358,8 +359,8 @@ export default function Navbar(){
                                 <div className="w-[70px] rounded-sm h-[70px] bg-slate-500"></div>
                             </div>
                         </Modal>
-                        <Link className="w-full" href={'/'}>
-                            <button className="bg-transparent border h-[55px] w-full flex justify-center items-center hover:bg-green-700">
+                        {token ?
+                            <button onClick={()=>{router.push('/userprofile')}} className="bg-transparent border h-[55px] w-full flex justify-center items-center hover:bg-green-700">
                                 <Image
                                     src={'/add.svg'}
                                     alt="add logo"
@@ -367,7 +368,16 @@ export default function Navbar(){
                                     height={30}
                                 />
                             </button>
-                        </Link>
+                            :
+                            <button onClick={()=>{router.push('/login')}} className="bg-transparent border h-[55px] w-full flex justify-center items-center hover:bg-green-700">
+                                <Image
+                                    src={'/add.svg'}
+                                    alt="add logo"
+                                    width={30}
+                                    height={30}
+                                />
+                            </button>
+                        }
                         {/* <Link className="w-full" href={'/'}>
                             <button className="bg-transparent border h-[55px] w-full flex justify-center items-center hover:bg-green-700">
                                 <Image
@@ -388,16 +398,23 @@ export default function Navbar(){
                                 />
                             </button>
                         </Link>
-                        {/* <Link className="w-full" href={'/check'}> */}
-                        <button onClick={()=>{router.push('/userprofile')}} className="bg-transparent border h-[55px] w-full flex justify-center items-center hover:bg-green-700">
-                            <Image
-                                src={'/user.svg'}
-                                alt="profile logo"
-                                width={30}
-                                height={30}
-                            />
-                        </button>
-                        {/* </Link> */}
+                        {token ? 
+                                <button onClick={()=>{router.push('/userprofile')}} className="bg-transparent border h-[55px] w-full flex justify-center items-center hover:bg-green-700">
+                                    <Avatar className="w-[40px] h-[40px]">
+                                        <AvatarImage src="https://sh-tarutinskaya-r04.gosweb.gosuslugi.ru/netcat_files/108/690/speaker_azzurro_1.png" />
+                                        <AvatarFallback>CN</AvatarFallback>
+                                    </Avatar>
+                                </button>
+                            :   
+                            <button onClick={()=>{router.push('/login')}} className="bg-transparent border h-[55px] w-full flex justify-center items-center hover:bg-green-700">
+                                <Image
+                                    src={'https://img.icons8.com/ios-filled/50/login-rounded-right.png'}
+                                    alt="profile logo"
+                                    width={30}
+                                    height={30}
+                                />
+                            </button>
+                        }
                     </div>
                 </div>
             </div>

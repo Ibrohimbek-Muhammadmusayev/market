@@ -38,7 +38,7 @@ export default function Home() {
               <h1 className="text-[40px] font-bold text-green-500">Top Rating</h1>
             </div>
             <div className="">
-              <div className="w-full h-[100%] shadow-inner my-[60px] overflow-hidden flex justify-center gap-[40px] flex-wrap rounded-md">
+              <div className="w-full h-[100%] shadow-inner my-[60px] py-[30px] overflow-hidden flex justify-center gap-[40px] flex-wrap rounded-md">
                   {skletondata.map(() => (
                     <div className="rounded-[12px] overflow-hidden border h-[400px] w-[250px]">
                       <div className="w-[250px] h-[200px] bg-slate-400"></div>

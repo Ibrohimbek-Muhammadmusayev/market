@@ -48,13 +48,14 @@ const Inputselect: React.FC = () => {
 
   return (
     <AutoComplete
-      style={{ width: 1000 }}
+      className='max-w-[800px]'
+      style={{ width: '100%', maxWidth: 800 }}
       options={options}
       onSelect={onSelect}
       onSearch={handleSearch}
       size="large"
     >
-        <Input.Search size="large" placeholder="Search product" enterButton />
+        <Input.Search className='w-[800px]' size="large" placeholder="Search product" enterButton />
     </AutoComplete>
   );
 };
