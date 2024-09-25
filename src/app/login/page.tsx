@@ -34,9 +34,7 @@ export default function Login() {
             console.log("User logged in: ", user);
 
             if (typeof window !== "undefined") {
-                useEffect(()=>{
-                    window.localStorage.setItem("token", JSON.stringify(user));
-                }, [])
+                window.localStorage.setItem("token", JSON.stringify(user));
             }
             if (user.photoURL === 'siller') {
                 router.push("/sillerprofile");
