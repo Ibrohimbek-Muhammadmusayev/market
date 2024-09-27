@@ -18,8 +18,8 @@ export default function Home() {
             <TopCorusel/>
           </div>
           <div className="flex justify-center items-center my-[50px]">
-            <Link href={'/products'} className="relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-green-500 border-2 border-green-500 rounded-full hover:text-white group hover:bg-gray-50">
-              <span className="absolute left-0 block w-full h-0 transition-all bg-green-400 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+            <Link href={'/products'} className="relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-[#A7A4A6] border-2 border-[#CEC8CB] rounded-full hover:text-white group hover:bg-gray-50">
+              <span className="absolute left-0 block w-full h-0 transition-all bg-[#CEC8CB] opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
               <span className="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
               <Image
                 className="fill-white"
@@ -35,7 +35,7 @@ export default function Home() {
           </div>
           <div className="w-full">
             <div className="flex justify-center items-center">
-              <h1 className="text-[40px] font-bold text-green-500">Top Rating</h1>
+              <h1 className="text-[40px] font-bold text-[#A7A4A6]">Top Rating</h1>
             </div>
             <div className="">
               <div className="w-full h-[100%] shadow-inner my-[60px] py-[30px] overflow-hidden flex justify-center gap-[40px] flex-wrap rounded-md">

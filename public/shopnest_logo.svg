@@ -1,0 +1,5 @@
+
+<svg width="80" height="25" xmlns="http://www.w3.org/2000/svg">
+    <rect width="80" height="25" rx="5" fill="none" stroke="#CEC8CB" stroke-width="2"/>
+    <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="#A7A4A6" font-family="Arial" font-size="12">ShopNest</text>
+</svg>

@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Footer(){
     return (
         <div>
-            <div className="w-full bg-green-100 rounded-t-[12px]">
+            <div className="w-full bg-[#E7DFE3] rounded-t-[12px]">
                 <div className="w-full">
                     <div className="max-w-[1440px] min-h-[300px] mx-auto">
                     <footer className="relative bg-blueGray-200 pt-8 pb-6">
@@ -13,7 +13,14 @@ export default function Footer(){
                         <div className="flex flex-wrap text-left lg:text-left">
                         <div className="w-full lg:w-6/12 px-4">
                             <Link href={'/'}>
-                                <h1 className="text-[30px] drop-shadow-lg font-bold text-green-700"><span className="text-lime-600">Eco</span> market</h1>
+                                <Image
+                                    className="rounded-[12px]"
+                                    src={'/site-logo.webp'}
+                                    alt="site logo"
+                                    width={80}
+                                    height={80}
+                                />
+                                {/* <h1 className="text-[30px] drop-shadow-lg font-bold text-green-700"><span className="text-lime-600">Eco</span> market</h1> */}
                             </Link>
                             <h5 className="text-lg mt-0 mb-2 text-blueGray-600">
                             Find us on any of these platforms, we respond 1-2 business days.

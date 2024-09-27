@@ -62,8 +62,8 @@ export default function Navbar(){
 
     return (
         <div className="w-full">
-            <div className="w-full fixed z-50 items-center bg-green-400">
-                <div className="max-w-[1440px] flex justify-between items-center px-[20px] text-white mx-auto h-[40px] sm:border-b md:border-b bg-green-400">
+            <div className="w-full fixed z-50 items-center bg-[#A7A4A6]">
+                <div className="max-w-[1440px] flex justify-between items-center px-[20px] text-white mx-auto h-[40px] sm:border-b md:border-b bg-[#A7A4A6]">
                     <div className="flex items-center justify-between sm:justify-between 2xl:justify-between lg:justify-between md:justify-between xl:justify-between">
                         <ul className="flex gap-[50px] mobilhidden">
                             <Link href={'/'}>
@@ -207,20 +207,20 @@ export default function Navbar(){
                             </div>
                         </div>
                         <div className="sm:hidden">
-                            <div className="h-[40px] px-[5px] bg-green-400">
+                            <div className="h-[40px] px-[5px] bg-[#A7A4A6]">
                                 <Link href={'/'}>
-                                    <h1 className="text-[30px] drop-shadow-lg font-bold text-green-700"><span className="text-lime-600">Eco</span> market</h1>
+                                    <h1 className="text-[30px] drop-shadow-lg font-bold text-[#E7DFE3]"><span className="text-[#CEC8CB]">Shop</span> Next</h1>
                                 </Link>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="w-full fixed z-50 bg-green-400 mt-[40px] rounded-b-[12px]">
+            <div className="w-full fixed z-50 bg-[#E7DFE3] mt-[40px] rounded-b-[12px]">
                 <div className="h-[90px] max-w-[1440px] px-[20px] mx-auto items-center flex gap-[20px] sm:gap-[20px] justify-between">
-                    <div className="flex items-center gap-[15px]">
+                    <div className="flex items-center gap-[25px]">
                         {token ? 
-                            <Link href={'/userprofile'}>
+                            <Link className="mobilhidden" href={'/userprofile'}>
                                 <Avatar>
                                     <AvatarImage src="https://sh-tarutinskaya-r04.gosweb.gosuslugi.ru/netcat_files/108/690/speaker_azzurro_1.png" />
                                     <AvatarFallback>CN</AvatarFallback>
@@ -228,9 +228,15 @@ export default function Navbar(){
                             </Link>
                             : null
                         }
-                        <div className="w-[165px] mobilhidden">
+                        <div className="w-[55px] mobilhidden">
                             <Link href={'/'}>
-                                <h1 className="text-[30px] drop-shadow-lg font-bold text-green-700"><span className="text-lime-600">Eco</span> market</h1>
+                                <Image
+                                    className="rounded-[12px]"
+                                    src={'/site-logo.webp'}
+                                    alt="site logo"
+                                    width={55}
+                                    height={55}
+                                />
                             </Link>
                         </div>
                     </div>
@@ -314,7 +320,7 @@ export default function Navbar(){
                         }
                     </ul>
                 </div>
-                <div className="mobilblock sm:block rounded-t-lg overflow-hidden md:hidden lg:hidden xl:hidden 2xl:hidden fixed items-center h-[55px] bottom-0 left-0 w-full bg-green-200">
+                <div className="mobilblock sm:block rounded-t-lg overflow-hidden md:hidden lg:hidden xl:hidden 2xl:hidden fixed items-center h-[55px] bottom-0 left-0 w-full bg-[#E7DFE3]">
                     <div className="flex justify-between items-center">
                         <Link className="w-full" href={'/'}>
                             <button className="bg-transparent border flex justify-center items-center h-[55px] w-full hover:bg-green-700">
